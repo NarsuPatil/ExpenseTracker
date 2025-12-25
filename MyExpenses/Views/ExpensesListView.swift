@@ -10,7 +10,6 @@ import Combine
 // MARK: - List View with Add/Edit/Delete
 
 struct ExpensesListView: View {
-    @EnvironmentObject var repo: ExpenseRepository
     @EnvironmentObject var vm: ExpensesViewModel
     @State private var showingAdd = false
     @State private var editing: ExpenseModel? = nil

@@ -24,7 +24,6 @@ final class ExpensesViewModel: ObservableObject {
 
     private var repo: ExpenseRepository
     private var cancellables = Set<AnyCancellable>()
-    private var refreshTimer: AnyCancellable?
     private let calendar = Calendar.current
 
     init(repo: ExpenseRepository = ExpenseRepository()) {
@@ -41,9 +40,6 @@ final class ExpensesViewModel: ObservableObject {
         // initial load
         Task { await reload() }
 
-        // small timer to observe external Core Data changes (could be improved with NSManagedObjectContextDidSave)
-        refreshTimer = Timer.publish(every: 1.0, on: .main, in: .common).autoconnect()
-            .sink { [weak self] _ in Task { await self?.reloadIfNeeded() } }
     }
 
     // MARK: - CRUD wrappers
@@ -86,22 +82,6 @@ final class ExpensesViewModel: ObservableObject {
         return NSCompoundPredicate(andPredicateWithSubpredicates: preds)
     }
 
-    // MARK: - Reload & derived
-    private var lastLoadedFingerprint: Int = 0
-
-    func reloadIfNeeded() async {
-        // naive fingerprint to avoid redundant reloads
-        do {
-            let all = try repo.fetchAll()
-            let fp = all.hashValue
-            if fp != lastLoadedFingerprint {
-                await MainActor.run { self.expenses = all; self.recomputeDerived() }
-                lastLoadedFingerprint = fp
-            }
-        } catch {
-            print("reloadIfNeeded error: \(error)")
-        }
-    }
 
     func reload() async {
         do {

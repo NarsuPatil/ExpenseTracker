@@ -26,6 +26,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		EE2C986E2EFDD8F5004D8320 /* MyExpenseDemo.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = MyExpenseDemo.mp4; sourceTree = "<group>"; };
 		EE3855B62EEEF4A3006FC234 /* MyExpenses.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyExpenses.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EE3855B92EEEF4A3006FC234 /* MyExpensesApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyExpensesApp.swift; sourceTree = "<group>"; };
 		EE3855BB2EEEF4A3006FC234 /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
@@ -82,6 +83,7 @@
 				EE3855C72EEEF8A4006FC234 /* Repository */,
 				EE3855B92EEEF4A3006FC234 /* MyExpensesApp.swift */,
 				EE3855BD2EEEF4A9006FC234 /* Assets.xcassets */,
+				EE2C986E2EFDD8F5004D8320 /* MyExpenseDemo.mp4 */,
 				EE3855BF2EEEF4A9006FC234 /* Preview Content */,
 			);
 			path = MyExpenses;
@@ -118,11 +120,11 @@
 			children = (
 				EE3855BB2EEEF4A3006FC234 /* MainTabView.swift */,
 				EE3855D12EEEFA14006FC234 /* ExpensesListView.swift */,
+				EE3855DC2EEEFC24006FC234 /* DashboardView.swift */,
+				EE3855E02EEEFCD4006FC234 /* FiltersExportView.swift */,
 				EE3855D32EEEFA6B006FC234 /* CategoryIconView.swift */,
 				EE3855DA2EEEFBF1006FC234 /* AddEditExpenseView.swift */,
-				EE3855DC2EEEFC24006FC234 /* DashboardView.swift */,
 				EE3855DE2EEEFC9B006FC234 /* ChartView.swift */,
-				EE3855E02EEEFCD4006FC234 /* FiltersExportView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";

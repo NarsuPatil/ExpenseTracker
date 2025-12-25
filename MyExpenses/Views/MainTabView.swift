@@ -9,8 +9,6 @@ import SwiftUI
 import Combine
 
 struct MainTabView: View {
-    @EnvironmentObject var repo: ExpenseRepository
-    @EnvironmentObject var vm: ExpensesViewModel
     
     var body: some View {
         TabView {

@@ -9,8 +9,14 @@ import Foundation
 
 extension NumberFormatter {
     static var currency: NumberFormatter = {
-        let f = NumberFormatter(); f.numberStyle = .currency; f.locale = Locale.current; return f
-    }()
+            let f = NumberFormatter()
+            f.numberStyle = .currency
+            f.currencyCode = "INR"          
+            f.currencySymbol = "₹"
+            f.locale = Locale(identifier: "en_IN")
+            f.maximumFractionDigits = 2
+            return f
+        }()
     static var shortCurrency: NumberFormatter = {
         let f = NumberFormatter(); f.numberStyle = .currency; f.maximumFractionDigits = 0; f.locale = Locale.current; return f
     }()

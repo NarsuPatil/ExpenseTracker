@@ -11,7 +11,7 @@ struct FiltersExportView: View {
     @EnvironmentObject var vm: ExpensesViewModel
     @State private var showingShare = false
     @State private var csvData: URL? = nil
-
+    
     var body: some View {
         NavigationView {
             Form {
@@ -40,7 +40,7 @@ struct FiltersExportView: View {
             .onAppear { Task { await vm.reload() } }
         }
     }
-
+    
     func export() {
         let csv = vm.exportCSV()
         // write to temp file and show share sheet
