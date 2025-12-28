@@ -23,7 +23,21 @@
 		EE3855DF2EEEFC9B006FC234 /* ChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE3855DE2EEEFC9B006FC234 /* ChartView.swift */; };
 		EE3855E12EEEFCD4006FC234 /* FiltersExportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE3855E02EEEFCD4006FC234 /* FiltersExportView.swift */; };
 		EE3855E42EEEFD5D006FC234 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE3855E32EEEFD5D006FC234 /* Helpers.swift */; };
+		EE3BF28D2F01ACA4008B9871 /* MyExpensesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE3BF28C2F01ACA4008B9871 /* MyExpensesTests.swift */; };
+		EE3BF2942F01ACDC008B9871 /* TestPersistenceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE3BF2932F01ACDC008B9871 /* TestPersistenceController.swift */; };
+		EE3BF2962F01B54F008B9871 /* ExpenseRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE3BF2952F01B54F008B9871 /* ExpenseRepositoryTests.swift */; };
+		EE3BF2982F01B9A1008B9871 /* ExpensesViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE3BF2972F01B9A1008B9871 /* ExpensesViewModelTests.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		EE3BF28E2F01ACA4008B9871 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EE3855AE2EEEF4A3006FC234 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = EE3855B52EEEF4A3006FC234;
+			remoteInfo = MyExpenses;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		EE2C986E2EFDD8F5004D8320 /* MyExpenseDemo.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = MyExpenseDemo.mp4; sourceTree = "<group>"; };
@@ -44,10 +58,22 @@
 		EE3855DE2EEEFC9B006FC234 /* ChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartView.swift; sourceTree = "<group>"; };
 		EE3855E02EEEFCD4006FC234 /* FiltersExportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FiltersExportView.swift; sourceTree = "<group>"; };
 		EE3855E32EEEFD5D006FC234 /* Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
+		EE3BF28A2F01ACA4008B9871 /* MyExpensesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MyExpensesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		EE3BF28C2F01ACA4008B9871 /* MyExpensesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyExpensesTests.swift; sourceTree = "<group>"; };
+		EE3BF2932F01ACDC008B9871 /* TestPersistenceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestPersistenceController.swift; sourceTree = "<group>"; };
+		EE3BF2952F01B54F008B9871 /* ExpenseRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseRepositoryTests.swift; sourceTree = "<group>"; };
+		EE3BF2972F01B9A1008B9871 /* ExpensesViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpensesViewModelTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		EE3855B32EEEF4A3006FC234 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EE3BF2872F01ACA4008B9871 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -61,6 +87,7 @@
 			isa = PBXGroup;
 			children = (
 				EE3855B82EEEF4A3006FC234 /* MyExpenses */,
+				EE3BF28B2F01ACA4008B9871 /* MyExpensesTests */,
 				EE3855B72EEEF4A3006FC234 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -69,6 +96,7 @@
 			isa = PBXGroup;
 			children = (
 				EE3855B62EEEF4A3006FC234 /* MyExpenses.app */,
+				EE3BF28A2F01ACA4008B9871 /* MyExpensesTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -145,6 +173,17 @@
 			path = Helpers;
 			sourceTree = "<group>";
 		};
+		EE3BF28B2F01ACA4008B9871 /* MyExpensesTests */ = {
+			isa = PBXGroup;
+			children = (
+				EE3BF28C2F01ACA4008B9871 /* MyExpensesTests.swift */,
+				EE3BF2932F01ACDC008B9871 /* TestPersistenceController.swift */,
+				EE3BF2952F01B54F008B9871 /* ExpenseRepositoryTests.swift */,
+				EE3BF2972F01B9A1008B9871 /* ExpensesViewModelTests.swift */,
+			);
+			path = MyExpensesTests;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -165,6 +204,24 @@
 			productReference = EE3855B62EEEF4A3006FC234 /* MyExpenses.app */;
 			productType = "com.apple.product-type.application";
 		};
+		EE3BF2892F01ACA4008B9871 /* MyExpensesTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EE3BF2902F01ACA4008B9871 /* Build configuration list for PBXNativeTarget "MyExpensesTests" */;
+			buildPhases = (
+				EE3BF2862F01ACA4008B9871 /* Sources */,
+				EE3BF2872F01ACA4008B9871 /* Frameworks */,
+				EE3BF2882F01ACA4008B9871 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				EE3BF28F2F01ACA4008B9871 /* PBXTargetDependency */,
+			);
+			name = MyExpensesTests;
+			productName = MyExpensesTests;
+			productReference = EE3BF28A2F01ACA4008B9871 /* MyExpensesTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -177,6 +234,10 @@
 				TargetAttributes = {
 					EE3855B52EEEF4A3006FC234 = {
 						CreatedOnToolsVersion = 14.2;
+					};
+					EE3BF2892F01ACA4008B9871 = {
+						CreatedOnToolsVersion = 14.2;
+						TestTargetID = EE3855B52EEEF4A3006FC234;
 					};
 				};
 			};
@@ -194,6 +255,7 @@
 			projectRoot = "";
 			targets = (
 				EE3855B52EEEF4A3006FC234 /* MyExpenses */,
+				EE3BF2892F01ACA4008B9871 /* MyExpensesTests */,
 			);
 		};
 /* End PBXProject section */
@@ -205,6 +267,13 @@
 			files = (
 				EE3855C12EEEF4A9006FC234 /* Preview Assets.xcassets in Resources */,
 				EE3855BE2EEEF4A9006FC234 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EE3BF2882F01ACA4008B9871 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -232,7 +301,26 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		EE3BF2862F01ACA4008B9871 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EE3BF28D2F01ACA4008B9871 /* MyExpensesTests.swift in Sources */,
+				EE3BF2982F01B9A1008B9871 /* ExpensesViewModelTests.swift in Sources */,
+				EE3BF2962F01B54F008B9871 /* ExpenseRepositoryTests.swift in Sources */,
+				EE3BF2942F01ACDC008B9871 /* TestPersistenceController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		EE3BF28F2F01ACA4008B9871 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = EE3855B52EEEF4A3006FC234 /* MyExpenses */;
+			targetProxy = EE3BF28E2F01ACA4008B9871 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		EE3855C22EEEF4A9006FC234 /* Debug */ = {
@@ -405,6 +493,40 @@
 			};
 			name = Release;
 		};
+		EE3BF2912F01ACA4008B9871 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = test.MyExpensesTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MyExpenses.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/MyExpenses";
+			};
+			name = Debug;
+		};
+		EE3BF2922F01ACA4008B9871 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = test.MyExpensesTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MyExpenses.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/MyExpenses";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -422,6 +544,15 @@
 			buildConfigurations = (
 				EE3855C52EEEF4A9006FC234 /* Debug */,
 				EE3855C62EEEF4A9006FC234 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EE3BF2902F01ACA4008B9871 /* Build configuration list for PBXNativeTarget "MyExpensesTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EE3BF2912F01ACA4008B9871 /* Debug */,
+				EE3BF2922F01ACA4008B9871 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
