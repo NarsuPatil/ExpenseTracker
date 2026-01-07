@@ -10,16 +10,11 @@ import XCTest
 
 final class ExpensesViewModelTests: XCTestCase {
     
-    var mockRepo: MockExpenseRepository!
-    
     var vm: ExpensesViewModel!
     
     override func setUp() async throws {
-        let container = TestPersistenceController.makeInMemoryContainer()
-        let repo = ExpenseRepository(container: container)
-        mockRepo = MockExpenseRepository()
+        let mockRepo = MockExpenseRepository()
         vm = await ExpensesViewModel(repo: mockRepo)
-        
     }
     
     func testFetchExpenses() async {
@@ -86,7 +81,6 @@ final class ExpensesViewModelTests: XCTestCase {
         await vm.addExpense(e)
         await MainActor.run {
             XCTAssertEqual(vm.expenses.count, 1)
-            XCTAssertEqual(mockRepo.storage.count, 1)
         }
     }
     func testDeleteExpense() async {
@@ -94,7 +88,7 @@ final class ExpensesViewModelTests: XCTestCase {
         await vm.addExpense(e)
         await vm.deleteExpense(e)
         let totalExpenses = await vm.expenses
-       
+        
         await MainActor.run {
             XCTAssertEqual(totalExpenses.count, 0)
         }

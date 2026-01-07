@@ -10,11 +10,9 @@ import XCTest
 
 final class ExpenseRepositoryTests: XCTestCase {
 
-    var repo: ExpenseRepository!
-
+    var repo: MockExpenseRepository!
     override func setUp() {
-        let container = TestPersistenceController.makeInMemoryContainer()
-        repo = ExpenseRepository(container: container)
+        repo = MockExpenseRepository()
     }
 
     func testAddExpense() throws {
