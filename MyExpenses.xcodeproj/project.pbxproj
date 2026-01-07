@@ -27,6 +27,7 @@
 		EE3BF2942F01ACDC008B9871 /* TestPersistenceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE3BF2932F01ACDC008B9871 /* TestPersistenceController.swift */; };
 		EE3BF2962F01B54F008B9871 /* ExpenseRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE3BF2952F01B54F008B9871 /* ExpenseRepositoryTests.swift */; };
 		EE3BF2982F01B9A1008B9871 /* ExpensesViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE3BF2972F01B9A1008B9871 /* ExpensesViewModelTests.swift */; };
+		EEC22ACA2F0E1C15008348A0 /* testCoverage.png in Resources */ = {isa = PBXBuildFile; fileRef = EEC22AC92F0E1C15008348A0 /* testCoverage.png */; };
 		EEEEAF712F0CFDBC00AAC5A1 /* MockExpenseRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEEEAF6F2F0CFD9000AAC5A1 /* MockExpenseRepository.swift */; };
 		EEEEAF792F0D970F00AAC5A1 /* MyExpensesUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEEEAF782F0D970F00AAC5A1 /* MyExpensesUITests.swift */; };
 		EEEEAF7B2F0D970F00AAC5A1 /* MyExpensesUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEEEAF7A2F0D970F00AAC5A1 /* MyExpensesUITestsLaunchTests.swift */; };
@@ -73,6 +74,7 @@
 		EE3BF2932F01ACDC008B9871 /* TestPersistenceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestPersistenceController.swift; sourceTree = "<group>"; };
 		EE3BF2952F01B54F008B9871 /* ExpenseRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseRepositoryTests.swift; sourceTree = "<group>"; };
 		EE3BF2972F01B9A1008B9871 /* ExpensesViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpensesViewModelTests.swift; sourceTree = "<group>"; };
+		EEC22AC92F0E1C15008348A0 /* testCoverage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = testCoverage.png; sourceTree = "<group>"; };
 		EEEEAF6F2F0CFD9000AAC5A1 /* MockExpenseRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockExpenseRepository.swift; sourceTree = "<group>"; };
 		EEEEAF762F0D970E00AAC5A1 /* MyExpensesUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MyExpensesUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EEEEAF782F0D970F00AAC5A1 /* MyExpensesUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyExpensesUITests.swift; sourceTree = "<group>"; };
@@ -135,6 +137,7 @@
 				EE3855B92EEEF4A3006FC234 /* MyExpensesApp.swift */,
 				EE3855BD2EEEF4A9006FC234 /* Assets.xcassets */,
 				EE2C986E2EFDD8F5004D8320 /* MyExpenseDemo.mp4 */,
+				EEC22AC92F0E1C15008348A0 /* testCoverage.png */,
 				EE3855BF2EEEF4A9006FC234 /* Preview Content */,
 			);
 			path = MyExpenses;
@@ -329,6 +332,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EEC22ACA2F0E1C15008348A0 /* testCoverage.png in Resources */,
 				EE3855C12EEEF4A9006FC234 /* Preview Assets.xcassets in Resources */,
 				EE3855BE2EEEF4A9006FC234 /* Assets.xcassets in Resources */,
 			);

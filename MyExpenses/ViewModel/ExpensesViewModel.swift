@@ -22,9 +22,9 @@ final class ExpensesViewModel: ObservableObject {
     @Published private(set) var categoryTotalsForCurrentPeriod: [ExpenseCategory: Double] = [:]
     @Published private(set) var monthlyTotalsLast12: [(month: Date, total: Double)] = []
     
-//    private var repo: ExpenseRepository
+    //    private var repo: ExpenseRepository
     private let repo: ExpenseRepositoryProtocol
-
+    
     private var cancellables = Set<AnyCancellable>()
     private let calendar = Calendar.current
     
@@ -32,7 +32,10 @@ final class ExpensesViewModel: ObservableObject {
         self.repo = repo
         
         // reactively recompute when filters change
-        Publishers.CombineLatest4($searchText.removeDuplicates(), $selectedCategory.removeDuplicates(by: { $0?.rawValue == $1?.rawValue }), $startDate.removeDuplicates(by: { ($0 ?? Date.distantPast) == ($1 ?? Date.distantPast) }), $endDate.removeDuplicates(by: { ($0 ?? Date.distantFuture) == ($1 ?? Date.distantFuture) }))
+        Publishers.CombineLatest4($searchText.removeDuplicates(),
+                                  $selectedCategory.removeDuplicates(by: { $0?.rawValue == $1?.rawValue }),
+                                  $startDate.removeDuplicates(by: { $0 == $1 }),
+                                  $endDate.removeDuplicates(by: { $0 == $1 }))
             .debounce(for: .milliseconds(200), scheduler: DispatchQueue.main)
             .sink { [weak self] _, _, _, _ in
                 Task { await self!.reload() }
