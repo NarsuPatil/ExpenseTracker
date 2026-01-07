@@ -15,20 +15,22 @@ final class ExpensesViewModel: ObservableObject {
     @Published var selectedCategory: ExpenseCategory? = nil
     @Published var startDate: Date? = nil
     @Published var endDate: Date? = nil
-
+    
     // Output
     @Published private(set) var expenses: [ExpenseModel] = []
     @Published private(set) var totalForCurrentMonth: Double = 0
     @Published private(set) var categoryTotalsForCurrentPeriod: [ExpenseCategory: Double] = [:]
     @Published private(set) var monthlyTotalsLast12: [(month: Date, total: Double)] = []
+    
+//    private var repo: ExpenseRepository
+    private let repo: ExpenseRepositoryProtocol
 
-    private var repo: ExpenseRepository
     private var cancellables = Set<AnyCancellable>()
     private let calendar = Calendar.current
-
-    init(repo: ExpenseRepository = ExpenseRepository()) {
+    
+    init(repo: ExpenseRepositoryProtocol = ExpenseRepository()) {
         self.repo = repo
-
+        
         // reactively recompute when filters change
         Publishers.CombineLatest4($searchText.removeDuplicates(), $selectedCategory.removeDuplicates(by: { $0?.rawValue == $1?.rawValue }), $startDate.removeDuplicates(by: { ($0 ?? Date.distantPast) == ($1 ?? Date.distantPast) }), $endDate.removeDuplicates(by: { ($0 ?? Date.distantFuture) == ($1 ?? Date.distantFuture) }))
             .debounce(for: .milliseconds(200), scheduler: DispatchQueue.main)
@@ -36,12 +38,12 @@ final class ExpensesViewModel: ObservableObject {
                 Task { await self!.reload() }
             }
             .store(in: &cancellables)
-
+        
         // initial load
         Task { await reload() }
-
+        
     }
-
+    
     // MARK: - CRUD wrappers
     func addExpense(_ expense: ExpenseModel) async {
         do {
@@ -51,15 +53,15 @@ final class ExpensesViewModel: ObservableObject {
             print("Add error: \(error)")
         }
     }
-
+    
     func updateExpense(_ expense: ExpenseModel) async {
         do { try repo.update(expense); await reload() } catch { print(error) }
     }
-
+    
     func deleteExpense(_ expense: ExpenseModel) async {
         do { try repo.delete(expense); await reload() } catch { print(error) }
     }
-
+    
     // MARK: - Filtering helpers
     private func buildPredicate() -> NSPredicate? {
         var preds: [NSPredicate] = []
@@ -81,41 +83,39 @@ final class ExpensesViewModel: ObservableObject {
         if preds.isEmpty { return nil }
         return NSCompoundPredicate(andPredicateWithSubpredicates: preds)
     }
-
-
+    
+    
     func reload() async {
         do {
             let predicate = buildPredicate()
-            let items = try repo.fetch(with: predicate)
-            await MainActor.run {
-                self.expenses = items
-                self.recomputeDerived()
-            }
+            let items = try repo.fetch(with: predicate, limit: nil,sort: nil)
+            self.expenses = items
+            self.recomputeDerived()
         } catch {
             print("Reload error: \(error)")
         }
     }
-
+    
     private func recomputeDerived() {
         computeTotalForCurrentMonth()
         computeCategoryTotalsForCurrentPeriod()
         computeMonthlyTotalsLast12()
     }
-
+    
     private func computeTotalForCurrentMonth() {
         let comps = calendar.dateComponents([.year, .month], from: Date())
         guard let start = calendar.date(from: comps) else { return }
         let end = calendar.date(byAdding: .month, value: 1, to: start)!
         totalForCurrentMonth = expenses.filter { $0.date >= start && $0.date < end }.reduce(0) { $0 + $1.amount }
     }
-
+    
     private func computeCategoryTotalsForCurrentPeriod() {
         var dict = [ExpenseCategory: Double]()
         for c in ExpenseCategory.allCases { dict[c] = 0 }
         for e in expenses { dict[e.category, default: 0] += e.amount }
         categoryTotalsForCurrentPeriod = dict
     }
-
+    
     private func computeMonthlyTotalsLast12() {
         var arr: [(Date, Double)] = []
         let now = Date()
@@ -128,7 +128,7 @@ final class ExpensesViewModel: ObservableObject {
         }
         monthlyTotalsLast12 = arr
     }
-
+    
     // MARK: - Export
     func exportCSV() -> String {
         do {

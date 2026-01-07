@@ -32,16 +32,18 @@ struct ExpensesListView: View {
                             Text(NumberFormatter.currency.string(from: NSNumber(value: expense.amount)) ?? "0")
                                 .bold()
                         }
+                        .accessibilityIdentifier("expense_row_\(expense.id.uuidString)")
                         .contentShape(Rectangle())
                         .onTapGesture { editing = expense }
                     }
                     .onDelete(perform: { idx in
                         Task { await delete(at: idx) }
                     })
+                    
                 }
             }
             .navigationTitle("Expenses")
-            .toolbar { ToolbarItem(placement: .navigationBarTrailing) { Button { showingAdd = true } label: { Image(systemName: "plus") } } }
+            .toolbar { ToolbarItem(placement: .navigationBarTrailing) { Button { showingAdd = true } label: { Image(systemName: "plus") } .accessibilityIdentifier("add_button") } }
             .sheet(isPresented: $showingAdd) { AddEditExpenseView() }
             .sheet(item: $editing) { exp in AddEditExpenseView(expense: exp) }
             .onAppear { Task { await vm.reload() } }

@@ -28,6 +28,7 @@ struct SearchBar: View {
         HStack {
             TextField("Search", text: $text)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
+                .accessibilityIdentifier("SearchTextField")
             if !text.isEmpty { Button(action: { text = "" }) { Image(systemName: "xmark.circle.fill") } }
         }
         .padding(.horizontal)

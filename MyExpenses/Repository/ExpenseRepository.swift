@@ -9,31 +9,43 @@ import CoreData
 
 // MARK: - Repository (CoreData operations) + Combine publisher
 
-final class ExpenseRepository: ObservableObject {
+protocol ExpenseRepositoryProtocol {
+    func fetchAll() throws -> [ExpenseModel]
+    func add(_ expense: ExpenseModel) throws
+    func update(_ expense: ExpenseModel) throws
+    func delete(_ expense: ExpenseModel) throws
+    func fetch(with predicate: NSPredicate?, limit: Int?, sort: [NSSortDescriptor]?) throws -> [ExpenseModel]
+    func exportCSV(predicate: NSPredicate?) throws -> String
+}
+
+final class ExpenseRepository: ObservableObject,ExpenseRepositoryProtocol {
+    
     private let context: NSManagedObjectContext
     private let backgroundContext: NSManagedObjectContext
-
+    
     init(container: NSPersistentContainer = PersistenceController.shared.container) {
         self.context = container.viewContext
         self.backgroundContext = container.newBackgroundContext()
     }
-
+    
     func fetchAll() throws -> [ExpenseModel] {
         let req = NSFetchRequest<ExpenseMO>(entityName: "ExpenseMO")
         req.sortDescriptors = [NSSortDescriptor(keyPath: \ExpenseMO.date, ascending: false)]
         let mos = try context.fetch(req)
         return mos.map { ExpenseModel(from: $0) }
     }
-
-    func fetch(with predicate: NSPredicate?, limit: Int? = nil, sort: [NSSortDescriptor] = [NSSortDescriptor(key: "date", ascending: false)]) throws -> [ExpenseModel] {
+    
+    func fetch(with predicate: NSPredicate?, limit: Int?, sort: [NSSortDescriptor]?) throws -> [ExpenseModel] {
+        
         let req = NSFetchRequest<ExpenseMO>(entityName: "ExpenseMO")
+        let sortDescriptor = sort ?? [NSSortDescriptor(key: "date", ascending: false)]
         req.predicate = predicate
-        req.sortDescriptors = sort
+        req.sortDescriptors = sortDescriptor
         if let limit = limit { req.fetchLimit = limit }
         let mos = try context.fetch(req)
         return mos.map { ExpenseModel(from: $0) }
     }
-
+    
     func add(_ expense: ExpenseModel) throws {
         try backgroundContext.performAndWait {
             let mo = NSEntityDescription.insertNewObject(forEntityName: "ExpenseMO", into: backgroundContext) as! ExpenseMO
@@ -45,7 +57,7 @@ final class ExpenseRepository: ObservableObject {
             try backgroundContext.save()
         }
     }
-
+    
     func update(_ expense: ExpenseModel) throws {
         try backgroundContext.performAndWait {
             let req = NSFetchRequest<ExpenseMO>(entityName: "ExpenseMO")
@@ -61,7 +73,7 @@ final class ExpenseRepository: ObservableObject {
             }
         }
     }
-
+    
     func delete(_ expense: ExpenseModel) throws {
         try backgroundContext.performAndWait {
             let req = NSFetchRequest<ExpenseMO>(entityName: "ExpenseMO")
@@ -74,7 +86,7 @@ final class ExpenseRepository: ObservableObject {
             }
         }
     }
-
+    
     // Export helper: fetch and convert to CSV string
     func exportCSV(predicate: NSPredicate? = nil) throws -> String {
         let items = try fetch(with: predicate, limit: nil, sort: [NSSortDescriptor(key: "date", ascending: false)])

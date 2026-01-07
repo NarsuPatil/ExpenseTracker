@@ -73,6 +73,31 @@ struct PersistenceController {
         model.entities = [expense]
         return model
     }
+    func reset() {
+        let tempContainer = container
+        guard let store = tempContainer.persistentStoreCoordinator.persistentStores.first,
+                  let storeURL = store.url else {
+                return
+            }
+
+            do {
+                try tempContainer.persistentStoreCoordinator.destroyPersistentStore(
+                    at: storeURL,
+                    ofType: NSSQLiteStoreType,
+                    options: nil
+                )
+
+                try tempContainer.persistentStoreCoordinator.addPersistentStore(
+                    ofType: NSSQLiteStoreType,
+                    configurationName: nil,
+                    at: storeURL,
+                    options: nil
+                )
+
+            } catch {
+                fatalError("Failed to reset CoreData: \(error)")
+            }
+    }
 }
 
 // Provide an NSManagedObject subclass to satisfy runtime

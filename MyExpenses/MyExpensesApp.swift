@@ -13,7 +13,11 @@ import Combine
 struct MyExpensesApp: App {
     let persistence = PersistenceController.shared
     @StateObject var repo = ExpenseRepository()
-
+    init() {
+        if ProcessInfo.processInfo.arguments.contains("UI_TESTING") {
+            PersistenceController.shared.reset()
+        }
+    }
     var body: some Scene {
         WindowGroup {
             MainTabView()

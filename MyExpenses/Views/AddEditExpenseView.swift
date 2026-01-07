@@ -34,19 +34,25 @@ struct AddEditExpenseView: View {
             Form {
                 Section(header: Text("Details")) {
                     TextField("Title", text: $title)
+                        .accessibilityIdentifier("title_field")
                     TextField("Amount", text: $amount).keyboardType(.decimalPad)
+                        .accessibilityIdentifier("amount_field")
                     Picker("Category", selection: $category) {
                         ForEach(ExpenseCategory.allCases) { cat in
                             HStack { Image(systemName: cat.systemIcon); Text(cat.displayName) }.tag(cat)
                         }
                     }
+                    .accessibilityIdentifier("category_picker")
                     DatePicker("Date", selection: $date, displayedComponents: [.date, .hourAndMinute])
+                        
                 }
             }
             .navigationTitle(editingId == nil ? "Add" : "Edit")
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) { Button("Cancel") { presentation.wrappedValue.dismiss() } }
-                ToolbarItem(placement: .navigationBarTrailing) { Button("Save") { Task { await save() } }.disabled(title.isEmpty || Double(amount) == nil) }
+                ToolbarItem(placement: .navigationBarTrailing) { Button("Save") { Task { await save() } }.disabled(title.isEmpty || Double(amount) == nil)
+                        .accessibilityIdentifier("save_button")
+                }
             }
         }
     }
