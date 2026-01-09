@@ -6,9 +6,8 @@
 //
 
 import Foundation
-// MARK: - Domain Model (struct) for UI use
 
-struct ExpenseModel: Identifiable, Equatable, Hashable {
+struct ExpenseModel: Identifiable {
     var id: UUID
     var title: String
     var amount: Double

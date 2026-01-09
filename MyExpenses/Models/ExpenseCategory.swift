@@ -7,9 +7,7 @@
 
 import SwiftUI
 
-// MARK: - Category definitions (icons + color coding)
-
-enum ExpenseCategory: String, CaseIterable, Identifiable, Codable {
+enum ExpenseCategory: String, CaseIterable, Identifiable {
     case groceries
     case transport
     case entertainment
